@@ -7,9 +7,11 @@ function identity(value) {
 
 function parseLiteral(ast) {
   switch (ast.kind) {
-    case Kind.OBJECT:
+    case Kind.OBJECT: {
+      throw new GraphQLError('Objects are not a valid coordinates')
+    }
     case Kind.STRING: {
-      throw new GraphQLError('Strings are not a valid data type', [ast])
+      throw new GraphQLError('Strings are not a valid coordinates')
     }
     case Kind.INT:
     case Kind.FLOAT: {
