@@ -1,5 +1,5 @@
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql'
-import GraphQLJSON from '../src'
+import Coordinates from '../src'
 
 const FIXTURE = [
   [-76.102294921875, 45.27875187893957],
@@ -18,10 +18,10 @@ describe('Coordinates', () => {
         name: 'Query',
         fields: {
           value: {
-            type: GraphQLJSON,
+            type: Coordinates,
             args: {
               arg: {
-                type: GraphQLJSON,
+                type: Coordinates,
               },
             },
             resolve: (obj, { arg }) => arg,
@@ -33,7 +33,7 @@ describe('Coordinates', () => {
 
   describe('serialize', () => {
     it('should support serialization', () => {
-      expect(GraphQLJSON.serialize(FIXTURE)).toEqual(FIXTURE)
+      expect(Coordinates.serialize(FIXTURE)).toEqual(FIXTURE)
     })
   })
 
@@ -41,7 +41,7 @@ describe('Coordinates', () => {
     it('should support parsing values', async () => {
       const response = await graphql(
         schema,
-        'query ($arg: JSON) { value(arg: $arg) }',
+        'query ($arg: Coordinates) { value(arg: $arg) }',
         null,
         null,
         { arg: FIXTURE },

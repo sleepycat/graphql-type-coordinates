@@ -26,7 +26,7 @@ function parseLiteral(ast) {
 }
 
 export default new GraphQLScalarType({
-  name: 'JSON',
+  name: 'Coordinates',
   description: 'a type for geospatial coordinates',
   serialize: identity,
   parseValue: identity,
